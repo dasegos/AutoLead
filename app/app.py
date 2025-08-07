@@ -21,6 +21,7 @@ logging.basicConfig(level=logging.INFO, filename='logs.log', filemode='w', forma
 
 @app.post('/receiving_clients')
 async def receiving_clients(data=Body()):
+    print(data)
     if (data['event'] == 'on_after_create') and (data[''] in config.SETTINGS['client_type_list']):
         deal_data = await create_deal_form()
         async with aiohttp.ClientSession(connector=aiohttp.TCPConnector(ssl=config.SSL_CERT)) as session:
