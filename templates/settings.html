@@ -1,0 +1,55 @@
+{% extends '_base.html' %}
+    {% block title %}<title>Настройки</title>{% endblock %}
+    {% block content %}
+        <div class='settings_wrapper'>
+            <div class='current_user'>
+                <h2>Текущий пользователь</h2>
+                <p>ID: {{ current_user['data']['id'] }}</p>
+                <p>Имя: {{ current_user['data']['name'] }}</p>
+                <p>Позиция: {{ current_user['data']['position'] }}</p>
+            </div>
+
+            <h2>Настройки АвтоЛИДа</h2>
+            <form method='post' name='settings_form'>
+                <div name='client_type_list'>
+                    <div class='toggle'>
+                        <span>Выберите обрабатываемых клиентов</span>
+                        <button id='toggle-dropdown' type='button'><i id='toggle-i' class='bx bxs-down-arrow'></i></button>
+                    </div>
+                    <div class='dropdown'>
+                        {% for type in client_type_list['data'] %}
+                            <div>
+                                <input type='checkbox' name='client_type_list' value={{ type['id'] }} id=client-{{ type['id'] }}></input>
+                                <label for=client-{{ type['id'] }}>{{ type['id'] }} - {{ type['name'] }}</label>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <select name='program'>
+                    <option value=''>Выберите схему сделки</option>
+                    {% for program in program_list['data'] %}
+                        <option value={{ program['id'] }}>{{ program['id'] }}</b> - {{ program['name'] }}</option>
+                    {% endfor %}
+                </select>
+
+                <select name='status'>
+                    <option value=''>Выберите статус сделки</option>
+                    {% for status in status_list %}
+                        {% if status['data'] %}
+                            <option value={{ status['data']['id'] }}>{{ status['data']['id'] }} - {{ status['data']['name'] }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+
+                <select name='manager'>
+                    <option value=''>Выберите менеджера</option>
+                    {% for manager in employee_list['data'] %}
+                        <option value={{ manager['id'] }}>{{ manager['id'] }} - {{ manager['name'] }} - {{ manager['position'] }}</option>
+                    {% endfor %}
+                </select>
+                
+                <input type='submit' value='Сохранить изменения'></input>
+            </form>
+        </div>
+    {% endblock %}
