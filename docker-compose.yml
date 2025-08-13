@@ -1,0 +1,17 @@
+services:
+  redis:
+    image: redis:latest
+    command: redis-server 
+    restart: on-failure
+    ports:
+      - '6379:6379'
+
+  app:
+    build: .
+    env_file:
+      - backend/.env
+    command: python3 app.py
+    restart: always
+    depends_on:
+      - redis
+      

@@ -1,0 +1,99 @@
+{% extends '_base.html' %}
+    {% block title %}
+        <title>Настройки автоЛИДа</title>
+    {% endblock %}
+    {% block content %}
+        <div class='frame'>
+
+            <h2>Изменение настроек</h2>
+
+            {# Форма изменения настроек #}
+            <form name='settings_form' method='post'>
+
+                {# Список клиентов для обработки (обрабатывает только выбранных клиентов) #}
+                <div id='client_types' class='form_part'>
+                    <div class='info'>
+                        <span>Выберите список обрабатываемых клиентов</span>
+                        <button class='toggle-dropdown' type='button'><i class='toggle-i bx bxs-down-arrow'></i></button>
+                    </div>
+                    <div class='dropdown hidden'>
+                        {% for type in client_types_list['data'] %}
+                            <div>
+                                <input type='checkbox' name='client_types' value={{ type['id'] }} id=client-{{ type['id'] }}></input>
+                                <label for=client-{{ type['id'] }}>
+                                    {{ type['id'] }} - {{ type['name'] }}
+                                </label>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                {# Список схем для создания сделки #}
+                <div id='program' class='form_part'>
+                    <div class='info'>
+                        <span>Выберите схему сделки</span>
+                        <button class='toggle-dropdown' type='button'><i class='toggle-i bx bxs-down-arrow'></i></button>
+                    </div>
+                    <div class='dropdown hidden'>
+                        {% for program in program_list['data'] %}
+                            <div>
+                                <input type='radio' name='program_id' value={{ program['id'] }} id=program-{{ program['id'] }}></input>
+                                <label for=program-{{ program['id'] }}>
+                                    {{ program['id'] }} - {{ program['name'] }}
+                                </label>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                {# Список статусов для создания сделки #}
+                <div id='status' class='form_part'>
+                    <div class='info'>
+                        <span>Выберите статус сделки</span>
+                        <button class='toggle-dropdown' type='button'><i class='toggle-i bx bxs-down-arrow'></i></button>
+                    </div>
+                    <div class='dropdown hidden'>
+                        {% for status in status_list['data'] %}
+                            <div>
+                                <input type='radio' name='status_id' value={{ status['id'] }} id=status-{{ status['id'] }}></input>
+                                <label for=status-{{ status['id'] }}>
+                                    {{ status['id'] }} - {{ status['name'] }}
+                                </label>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                {# Список работников для менеджера сделок #}
+                <div id='employee' class='form_part'>
+                    <div class='info'>
+                        <span>Выберите менеджера</span>
+                        <button class='toggle-dropdown' type='button'><i class='toggle-i bx bxs-down-arrow'></i></button>
+                    </div>
+                    <div class='dropdown hidden'>
+                        {% for employee in employee_list['data'] %}
+                            <div>
+                                <input type='radio' name='employee_id' value={{ employee['id'] }} id=employee-{{ employee['id'] }}></input>
+                                <label for=employee-{{ employee['id'] }}>
+                                    {{ employee['id'] }} - {{ employee['name'] }}
+                                </label>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                {# Кнопка SUBMIT, отправляющая данные на сервер #}
+                <input type='submit' value='Сохранить изменения'/>
+            </form>
+        </div>
+        <script defer>
+            document.querySelector(`input[id=program-{{ program_id }}]`).checked = true;
+            document.querySelector(`input[id=status-{{ status_id }}]`).checked = true;
+            document.querySelector(`input[id=employee-{{ employee_id }}]`).checked = true; 
+
+            for (let i = 0; i < {{client_types}}.length; i++) {
+                id_ = {{ client_types }}[i]
+                document.querySelector(`input[id=client-${id_}]`).checked = true;
+            }
+        </script>
+    {% endblock %}

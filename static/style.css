@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --white: #ffffff;
+    --black: #000000;
+    --grey: #e9e6e6;
+    --slight-grey: #bebebe;
+    --dark-grey: #585858;
+    --green: #19C964;
+    --bright-green: #1ee574;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    color: var(--black);
+    font-family: 'Montserrat', sans-serif;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.content {
+    padding: 20px;
+    flex: 1 0 auto;
+}
+
+.main-nav ul {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    gap: 30px;
+}
+
+.main-nav ul li a {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    font-size: 20px;
+    gap: 3px;
+    text-decoration: none;
+    color: var(--green);
+}
+
+.main-nav ul li a:hover {
+    color: var(--bright-green);
+}
+
+.frame {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-top: 30px;
+    width: 100%;
+}
+
+/* Main page */
+/* ------------------------------------ */
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.container .inner {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 10px 20px;
+}
+
+.container .inner p {
+    font-size: 17px;
+    border-radius: 12px;
+    padding: 8px;
+    color: var(--white);
+    background-color: var(--slight-grey);
+}
+/* ------------------------------------ */
+
+/* Settings page */
+/* ------------------------------------ */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form_part {
+    width: 500px;
+}
+
+.form_part .info {
+    border: var(--dark-grey) solid 1.5px;
+    border-radius: 8px;
+    padding: 8px;
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.form_part .info span {
+    font-size: 17px;
+    font-weight: 400;
+}
+
+.form_part .info .toggle-dropdown {
+    border: none;
+    background: none;
+    color: var(--green);
+    font-size: 23px;
+    cursor: pointer;
+}
+
+.form_part .dropdown {
+    padding: 10px 25px;
+}
+
+.form_part .dropdown div {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    padding: 4px;
+    gap: 5px;
+    cursor: pointer;
+    transition: all .05s ease-in;
+}
+
+.form_part .dropdown div:hover {
+    background-color: var(--grey);
+}
+
+.hidden {
+    display: none;
+}
+
+input[type='submit'] {
+    width: 400px;
+    margin-top: 20px;
+    background-color: var(--green);
+    color: var(--white);
+    padding: 10px;
+    font-size: 15px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    border: solid 2.5px var(--green);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all .2s ease-in;
+}
+
+input[type='submit']:hover {
+    background-color: transparent;
+    color: var(--green);
+}
+
+@media (max-width: 768px) {
+    .form_part {
+        width: 100%;
+    }
+}
+/* ------------------------------------ */

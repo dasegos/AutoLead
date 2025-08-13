@@ -1,0 +1,30 @@
+{% extends '_base.html' %}
+    {% block title %}
+        <title>АвтоЛИД</title>
+    {% endblock %}
+    {% block content %}
+        <div class='frame'>
+            
+            {# Данные о пользователе #}
+            <div id='user-info' class='container'>
+                <h2>Данные об аккаунте</h2>
+                <div class='inner'>
+                    <p>ID: {{ current_user['data']['id'] }}</p>
+                    <p>Имя: {{ current_user['data']['name'] }}</p>
+                    <p>Позиция: {{ current_user['data']['position'] }}</p>
+                </div>
+            </div>
+
+            {# Настройки пользователя #}
+            <div id='current-settings' class='container'>
+                <h2>Текущие настройки</h2>
+                <div class='inner'>
+                    <p>Типы клиентов: {{ settings['client_types'] }}</p>
+                    <p>Схема сделки: {{ settings['program_id'] }}</p>
+                    <p>Статус сделки: {{ settings['status_id'] }}</p>
+                    <p>Менеджер: {{ settings['employee_id'] }}</p>
+                </div>
+            </div>
+
+        </div>
+    {% endblock %}
