@@ -37,11 +37,11 @@ async def page(request: Request, accountId: str, applicationUuid: str, userSign:
     settings = await SettingsDatabase.get_settings(applicationUuid)
 
     if request.headers.get('Accept') == 'application/json':
-        logging.info(f'Main page API GET-request. From: {request.query_params.get('accountId')} ; {request.query_params.get('applicationUuid')}')
+        logging.info(f'Main page API GET-request. From: {request.query_params.get("accountId")} ; {request.query_params.get("applicationUuid")}')
         return JSONResponse({'current_user' : current_user, 'settings' : settings})
     else:
         context = {'request' : request, 'current_user' : current_user, 'settings' : settings}
-        logging.info(f'Main page template GET-request. From: {request.query_params.get('accountId')} ; {request.query_params.get('applicationUuid')}')
+        logging.info(f'Main page template GET-request. From: {request.query_params.get("accountId")} ; {request.query_params.get("applicationUuid")}')
         return templates.TemplateResponse('page.html', context)
 
 
@@ -66,12 +66,12 @@ async def get_settings(request: Request, accountId: str, applicationUuid: str, u
 
 
     if request.headers.get('Accept') == 'application/json':
-        logging.info(f'Settings page API GET-request. From: {request.query_params.get('accountId')} ; {request.query_params.get('applicationUuid')}')
+        logging.info(f'Settings page API GET-request. From: {request.query_params.get("accountId")} ; {request.query_params.get("applicationUuid")}')
         return JSONResponse(new_settings)
     else:
         current_settings = await SettingsDatabase.get_settings(applicationUuid)
         context = {'request' : request, **new_settings}
-        logging.info(f'Settings page template GET-request. From: {request.query_params.get('accountId')} ; {request.query_params.get('applicationUuid')}')
+        logging.info(f'Settings page template GET-request. From: {request.query_params.get("accountId")} ; {request.query_params.get("applicationUuid")}')
         return templates.TemplateResponse('settings.html', {**context, **current_settings})
     
 
@@ -99,10 +99,10 @@ async def post_settings(request: Request, accountId: str, applicationUuid: str, 
     await SettingsDatabase.update_settings(applicationUuid, data) # Updating user's settings in the database
 
     if request.headers.get('Accept') == 'application/json':
-        logging.info(f'Settings page API POST-request. From: {request.query_params.get('accountId')} ; {request.query_params.get('applicationUuid')} | Data: {data}')
+        logging.info(f'Settings page API POST-request. From: {request.query_params.get("accountId")} ; {request.query_params.get("applicationUuid")} | Data: {data}')
         return JSONResponse(data)
     else:
-        logging.info(f'Settings page template POST-request. From: {request.query_params.get('accountId')} ; {request.query_params.get('applicationUuid')} | Data: {data}')
+        logging.info(f'Settings page template POST-request. From: {request.query_params.get("accountId")} ; {request.query_params.get("applicationUuid")} | Data: {data}')
         redirect_url = request.url_for('page')
         return RedirectResponse(f'{redirect_url}?{request.query_params}', status_code=302)
 
