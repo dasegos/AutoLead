@@ -6,10 +6,10 @@ from fastapi.responses import JSONResponse, RedirectResponse
 import uvicorn
 
 # Project imports
-from backend.config import AppConfig
-from backend.database import SettingsDatabase
-from backend.auth import has_permission
-from backend.utils import create_deal_form, fetch
+from config import AppConfig
+from database import SettingsDatabase
+from auth import has_permission
+from utils import create_deal_form, fetch
 
 # Other imports
 import json

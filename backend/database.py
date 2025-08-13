@@ -1,5 +1,5 @@
 # Project imports
-from .config import RedisConfig
+from config import RedisConfig
 
 # Other imports
 import redis.asyncio as aioredis

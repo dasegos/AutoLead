@@ -1,5 +1,5 @@
 # Project imports
-from .database import SettingsDatabase
+from database import SettingsDatabase
 
 #  Other imports
 from aiohttp import ClientSession

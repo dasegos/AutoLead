@@ -10,7 +10,7 @@ services:
     build: .
     env_file:
       - backend/.env
-    command: python3 app.py
+    command: python3 backend/app.py
     restart: always
     depends_on:
       - redis

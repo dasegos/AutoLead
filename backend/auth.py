@@ -3,8 +3,8 @@ from fastapi import Request, status
 from fastapi.responses import JSONResponse
 
 # Project imports
-from .utils import fetch
-from .config import AppConfig
+from utils import fetch
+from config import AppConfig
 
 # Other imports
 import aiohttp
