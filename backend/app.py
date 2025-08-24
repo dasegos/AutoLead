@@ -112,7 +112,7 @@ async def events(data=Body()):
     # If contractor event is creation & contractor type id in the list
     if (data['event'] == 'on_after_create') and (data['data']['type']['id'] in await SettingsDatabase.get_setting(data['uuid'], 'client_types')):
         deal_data = await create_deal_form(data['model'], data['data']['id'])
-        url = f'https://{data['accountInfo']['accountName']}/api/v3/deal' # building a url for POST-request
+        url = f'https://{data["accountInfo"]["accountName"]}/api/v3/deal' # building a url for POST-request
 
         # Aiohttp connection
         async with aiohttp.ClientSession(connector=aiohttp.TCPConnector(ssl=AppConfig.SSL_CERT)) as session:
@@ -127,4 +127,4 @@ async def events(data=Body()):
 
 # Running an app
 if __name__ == '__main__':
-    uvicorn.run('app:app', host='0.0.0.0', reload=True)
+    uvicorn.run('app:app', host='0.0.0.0', port=80, reload=True)

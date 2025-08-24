@@ -1,7 +1,9 @@
 FROM python:3.12.8
 
-WORKDIR /app
-COPY requirements.txt .
+COPY . .
+WORKDIR .
+
 RUN pip3 install --upgrade setuptools
 RUN pip3 install -r requirements.txt
-COPY . /app
+
+EXPOSE 8000
